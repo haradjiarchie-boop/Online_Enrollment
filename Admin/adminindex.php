@@ -44,8 +44,7 @@ $announcements = app_published_announcements($conn);
 
 <body>
 
-<div class='header'>
-</div>
+<?php include __DIR__ . '/../includes/portal_topbar.php'; ?>
 
 <nav class='container'>
 <?php
@@ -56,18 +55,37 @@ include('includes/menu1.php');
 <div id="main">
 	<div class="shell">
 		<?php if ($flash !== '') { ?><p class="form-success" role="status"><?php echo app_h($flash); ?></p><?php } ?>
-		<h1>Administrator Dashboard</h1>
+		<section class="dashboard-hero">
+			<div class="dashboard-hero-copy">
+				<p class="eyebrow">John Paul College · Administration</p>
+				<h1>Enrollment overview</h1>
+				<p>Manage student records, review submissions, and keep campus enrollment moving.</p>
+				<div class="hero-actions">
+					<a class="button" href="report.php">Review enrollments</a>
+					<a class="button button-secondary" href="userreg.php">Manage students</a>
+				</div>
+			</div>
+			<div class="hero-summary">
+				<span>Enrollment status</span>
+				<strong><?php echo $enrollmentState['open'] ? 'Open' : 'Closed'; ?></strong>
+				<small>Academic year <?php echo date('Y'); ?>-<?php echo date('Y') + 1; ?></small>
+			</div>
+		</section>
 		<?php if ($enrollmentState['open']) { ?><p class="form-success" role="status">Enrollment is open.</p><?php } else { ?><p class="enrollment-closed" role="alert"><?php echo app_h($enrollmentState['reason']); ?> Change this in <a href="enrollment_settings.php">Enrollment Settings</a>.</p><?php } ?>
 		<section class="enrollment-stats" aria-label="Enrollment summary">
-			<div class="stat-card"><span>Students</span><strong><?php echo $studentCount; ?></strong></div>
-			<div class="stat-card"><span>Pending enrollments</span><strong><?php echo $pendingCount; ?></strong></div>
-			<div class="stat-card"><span>Approved enrollments</span><strong><?php echo $approvedCount; ?></strong></div>
-			<div class="stat-card"><span>Rejected enrollments</span><strong><?php echo $rejectedCount; ?></strong></div>
-			<div class="stat-card"><span>Payments awaiting verification</span><strong><?php echo $paymentsPending; ?></strong></div>
-			<div class="stat-card"><span>Documents awaiting verification</span><strong><?php echo $documentsPending; ?></strong></div>
-			<div class="stat-card"><span>Verified collections</span><strong>&#8369;<?php echo number_format($verifiedTotal, 2); ?></strong></div>
+			<div class="stat-card"><span>Students</span><svg class="stat-icon" aria-hidden="true"><use href="../assets/icons.svg#nav-users"/></svg><strong><?php echo $studentCount; ?></strong></div>
+			<div class="stat-card"><span>Pending enrollments</span><svg class="stat-icon" aria-hidden="true"><use href="../assets/icons.svg#nav-history"/></svg><strong><?php echo $pendingCount; ?></strong></div>
+			<div class="stat-card"><span>Approved enrollments</span><svg class="stat-icon" aria-hidden="true"><use href="../assets/icons.svg#nav-enroll"/></svg><strong><?php echo $approvedCount; ?></strong></div>
+			<div class="stat-card"><span>Rejected enrollments</span><svg class="stat-icon" aria-hidden="true"><use href="../assets/icons.svg#nav-document"/></svg><strong><?php echo $rejectedCount; ?></strong></div>
+			<div class="stat-card"><span>Payments awaiting verification</span><svg class="stat-icon" aria-hidden="true"><use href="../assets/icons.svg#nav-money"/></svg><strong><?php echo $paymentsPending; ?></strong></div>
+			<div class="stat-card"><span>Documents awaiting verification</span><svg class="stat-icon" aria-hidden="true"><use href="../assets/icons.svg#nav-document"/></svg><strong><?php echo $documentsPending; ?></strong></div>
+			<div class="stat-card"><span>Verified collections</span><svg class="stat-icon" aria-hidden="true"><use href="../assets/icons.svg#nav-money"/></svg><strong>&#8369;<?php echo number_format($verifiedTotal, 2); ?></strong></div>
 		</section>
-		<p><a class="button" href="report.php">Review enrollments</a> <a class="button" href="payments.php">Review payments</a> <a class="button" href="documents.php">Review documents</a> <a class="button" href="enrollment_settings.php">Enrollment settings</a></p>
+		<div class="dashboard-shortcuts" aria-label="Administrator shortcuts">
+			<a class="button button-secondary" href="payments.php">Review payments</a>
+			<a class="button button-secondary" href="documents.php">Review documents</a>
+			<a class="button button-secondary" href="enrollment_settings.php">Enrollment settings</a>
+		</div>
 		<?php if ($announcements) { ?>
 		<h2>Published announcements</h2>
 		<ul class="announcement-list">
@@ -76,6 +94,7 @@ include('includes/menu1.php');
 			<?php } ?>
 		</ul>
 		<?php } ?>
+		<section class="dashboard-card-grid" aria-label="College information and updates">
 		<!-- Box -->
 		<div class="box">
 			<h2>Welcome to Admin</h2>
@@ -138,6 +157,7 @@ include('includes/menu1.php');
 		</div>
 		<!-- /Box -->
 		<div class="cl">&nbsp;</div>
+		</section>
 	</div>
 	<div><br></div>
 </div>

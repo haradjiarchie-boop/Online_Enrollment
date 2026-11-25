@@ -11,7 +11,7 @@ unset($_SESSION['flash_success'], $_SESSION['flash_error']);
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Manage Sections | John Paul College</title><link href="style.css" rel="stylesheet"></head>
 <body>
-<div class="header"></div>
+<?php include __DIR__ . '/../includes/portal_topbar.php'; ?>
 <nav class="container" aria-label="Administrator navigation"><?php include __DIR__ . '/includes/menu1.php'; ?></nav>
 <main id="main"><div class="shell">
 	<div class="page-heading"><h1>Sections</h1><a class="button" href="addnewsection.php">Add section</a></div>

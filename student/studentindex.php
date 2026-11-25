@@ -47,8 +47,7 @@ $announcements = app_published_announcements($conn);
 
 <body>
 
-<div class='header'>
-</div>
+<?php include __DIR__ . '/../includes/portal_topbar.php'; ?>
 
 <nav class='container'>
 <?php
@@ -59,14 +58,29 @@ include('includes/menu.php');
 <div id="main">
 	<div class="shell">
 		<?php if ($flash !== '') { ?><p class="form-success" role="status"><?php echo app_h($flash); ?></p><?php } ?>
-		<h1>Student Dashboard</h1>
+		<section class="dashboard-hero">
+			<div class="dashboard-hero-copy">
+				<p class="eyebrow">Student portal</p>
+				<h1>Welcome back</h1>
+				<p>Your enrollment, payments, and student records are all in one place.</p>
+				<div class="hero-actions">
+					<?php if ($enrollmentState['open']) { ?><a class="button" href="enroll.php">Continue to enrollment</a><?php } ?>
+					<a class="button button-secondary" href="enrollmenthistory.php">View my history</a>
+				</div>
+			</div>
+			<div class="hero-summary">
+				<span>Latest enrollment</span>
+				<strong><?php echo $latestEnrollment ? app_h(app_status_label($latestEnrollment['status'])) : 'Not started'; ?></strong>
+				<small><?php echo $latestEnrollment ? app_h($latestEnrollment['semester'] . ' ' . $latestEnrollment['school_year']) : 'Your enrollment status will appear here.'; ?></small>
+			</div>
+		</section>
 		<?php if ($enrollmentState['open']) { ?><p class="form-success" role="status">Enrollment is open. <a href="enroll.php">Enroll now</a>.</p><?php } else { ?><p class="enrollment-closed" role="alert"><?php echo app_h($enrollmentState['reason']); ?></p><?php } ?>
 		<?php if ($latestEnrollment) { ?>
 		<section class="enrollment-stats" aria-label="My latest enrollment">
-			<div class="stat-card"><span>Latest enrollment</span><strong><?php echo app_h(app_status_label($latestEnrollment['status'])); ?></strong></div>
-			<div class="stat-card"><span>Term</span><strong><?php echo app_h($latestEnrollment['semester'] . ' ' . $latestEnrollment['school_year']); ?></strong></div>
-			<div class="stat-card"><span>Total amount</span><strong>&#8369;<?php echo number_format($latestEnrollment['total_amount'], 2); ?></strong></div>
-			<div class="stat-card"><span>Balance</span><strong>&#8369;<?php echo number_format($latestBalance, 2); ?></strong></div>
+			<div class="stat-card"><span>Latest enrollment</span><svg class="stat-icon" aria-hidden="true"><use href="../assets/icons.svg#nav-history"/></svg><strong><?php echo app_h(app_status_label($latestEnrollment['status'])); ?></strong></div>
+			<div class="stat-card"><span>Term</span><svg class="stat-icon" aria-hidden="true"><use href="../assets/icons.svg#nav-calendar"/></svg><strong><?php echo app_h($latestEnrollment['semester'] . ' ' . $latestEnrollment['school_year']); ?></strong></div>
+			<div class="stat-card"><span>Total amount</span><svg class="stat-icon" aria-hidden="true"><use href="../assets/icons.svg#nav-money"/></svg><strong>&#8369;<?php echo number_format($latestEnrollment['total_amount'], 2); ?></strong></div>
+			<div class="stat-card"><span>Balance</span><svg class="stat-icon" aria-hidden="true"><use href="../assets/icons.svg#nav-money"/></svg><strong>&#8369;<?php echo number_format($latestBalance, 2); ?></strong></div>
 		</section>
 		<?php if (!empty($latestEnrollment['review_note'])) { ?><p class="form-error" role="alert"><strong>Registrar note:</strong> <?php echo app_h($latestEnrollment['review_note']); ?></p><?php } ?>
 		<p><a class="button" href="enrollmenthistory.php">View enrollment history</a> <a class="button" href="assessment.php?id=<?php echo (int)$latestEnrollment['ID']; ?>">View assessment</a>
@@ -84,6 +98,7 @@ include('includes/menu.php');
 			<?php } ?>
 		</ul>
 		<?php } ?>
+		<section class="dashboard-card-grid" aria-label="College information and updates">
 		<!-- Box -->
 		<div class="box">
 			<h2>Welcome Student</h2>
@@ -146,6 +161,7 @@ include('includes/menu.php');
 		</div>
 		<!-- /Box -->
 		<div class="cl">&nbsp;</div>
+		</section>
 	</div>
   <div><br></div>
 </div>

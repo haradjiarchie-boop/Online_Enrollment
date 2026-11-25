@@ -49,7 +49,7 @@ while ($enrollment = $result->fetch_assoc()) {
 <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div class="header"></div>
+<?php include __DIR__ . '/../includes/portal_topbar.php'; ?>
 <nav class="container" aria-label="Student navigation"><?php include __DIR__ . '/includes/menu.php'; ?></nav>
 <main id="main">
 	<div class="shell wide-shell">

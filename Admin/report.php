@@ -135,7 +135,7 @@ $exportQuery = http_build_query(array_filter(array('status' => $filterStatus, 'c
 <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div class="header"></div>
+<?php include __DIR__ . '/../includes/portal_topbar.php'; ?>
 <nav class="container" aria-label="Administrator navigation"><?php include __DIR__ . '/includes/menu1.php'; ?></nav>
 <main id="main">
 	<div class="shell wide-shell">

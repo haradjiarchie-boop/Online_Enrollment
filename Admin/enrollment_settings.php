@@ -173,7 +173,7 @@ try {
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 </head>
 <body>
-<div class="header"></div>
+<?php include __DIR__ . '/../includes/portal_topbar.php'; ?>
 <nav class="container" aria-label="Administrator navigation"><?php include __DIR__ . '/includes/menu1.php'; ?></nav>
 <main id="main">
 	<div class="shell wide-shell">
