@@ -143,24 +143,16 @@ include('includes/menu1.php');
 </div>
 <!-- /Main -->
 
-<!-- Footer -->
-<div id="footer">
-	<div class="shell">
-		<!-- Mini Nav -->
-		<div class="footer-navigation">
-			<?php
-include('includes/menu2.php');
-?>
+<footer id="footer">
+	<div class="footer-inner">
+		<div class="footer-brand">
+			<strong>John Paul College</strong>
+			<span>Online Enrollment System</span>
 		</div>
-		<!-- /Mini Nav -->
-		<!-- Copyrights -->
-		<p class="right">
-			Copyright 2026 | Online Enrollment
-		</p>
-		<!-- /Copyrights -->
-		<div class="cl">&nbsp;</div>
+		<nav class="footer-navigation" aria-label="Footer navigation"><?php include('includes/menu2.php'); ?></nav>
+		<p class="right">&copy; <?php echo date('Y'); ?> John Paul College. All rights reserved.</p>
 	</div>
-</div>
+</footer>
 
 </body>
 </html>

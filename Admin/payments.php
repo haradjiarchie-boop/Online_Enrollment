@@ -220,14 +220,14 @@ try {
 								<input type="hidden" name="csrf_token" value="<?php echo app_h(app_csrf_token()); ?>">
 								<input type="hidden" name="payment_id" value="<?php echo (int)$payment['ID']; ?>">
 								<input type="hidden" name="new_status" value="verified">
-								<button type="submit" name="set_payment_status" value="1">Verify</button>
+								<button type="submit" class="button-positive" name="set_payment_status" value="1">Verify</button>
 							</form>
 							<form method="post" class="inline-form" onsubmit="return confirm('Reject this payment? The student will see your reason.');">
 								<input type="hidden" name="csrf_token" value="<?php echo app_h(app_csrf_token()); ?>">
 								<input type="hidden" name="payment_id" value="<?php echo (int)$payment['ID']; ?>">
 								<input type="hidden" name="new_status" value="rejected">
 								<input type="text" name="note" maxlength="500" placeholder="Reason for rejection (required)" aria-label="Reason for rejection" required>
-								<button type="submit" name="set_payment_status" value="1">Reject</button>
+								<button type="submit" class="button-negative" name="set_payment_status" value="1">Reject</button>
 							</form>
 						</td>
 					</tr>
